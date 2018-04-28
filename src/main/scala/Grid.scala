@@ -13,8 +13,12 @@ class Grid(var x: Int, var y: Int) {
         (1, 0),  // south
         (1, -1), // southwest
         (0, -1), // west
-        (1, -1), // northwest
+        (-1, -1), // northwest
     )
+
+    def setGrid(grid: Array[Array[String]]): Unit = {
+        this.grid = grid
+    }
 
     def fill(fill_char: String): Unit = {
         for (i <- 0 to this.x-1) {
@@ -28,11 +32,15 @@ class Grid(var x: Int, var y: Int) {
         for(_ <- 0 to numberOfCells-1){
             var random_x = Random.nextInt(this.x)
             var random_y = Random.nextInt(this.y)
-            grid(random_x)(random_y) = "1"
+            grid(random_x)(random_y) = "*"
         }
     }
 
     def display(): Unit = {
+        for (new_line_index <- 0 to 100){
+            println()
+        }
+
         for (i <- 0 to this.x-1) {
             for (j <- 0 to this.y-1){
                 print(grid(i)(j))
@@ -51,7 +59,7 @@ class Grid(var x: Int, var y: Int) {
         for ((x_direction,y_direction) <- directions){
             val neighbor_x = x + x_direction
             val neighbor_y = y + y_direction
-            if (inGridBounds(neighbor_x, neighbor_y) && this.grid(neighbor_x)(neighbor_y) == "1"){
+            if (inGridBounds(neighbor_x, neighbor_y) && this.grid(neighbor_x)(neighbor_y) == "*"){
                 aliveNeighborCount += 1
             }
         }

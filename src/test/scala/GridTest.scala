@@ -15,11 +15,11 @@ class GridTest extends FunSuite {
   test("Grid check alive neighbor counts"){
   	var grid = new Grid(3,3)
   	grid.grid = Array(
-  		Array("0", "1", "0"),
-  		Array("1", "1", "0"),
-  		Array("0", "0", "0")
+  		Array("*", "*", "-"),
+  		Array("*", "-", "-"),
+  		Array("-", "-", "-")
 	)
 	val aliveNeighborCount = grid.getAliveNeighborCount(1, 1)
-	assert(aliveNeighborCount == 2)
+	assert(aliveNeighborCount == 3)
   }
 }
